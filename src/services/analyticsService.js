@@ -22,8 +22,8 @@ export const notificationService = {
 };
 
 export const settingsService = {
-  get: () => api.get('/settings').then(d => ({ ...d.settings, status: d.status, folderId: d.folderId, folderUrl: d.folderUrl })),
-  update: (data) => api.put('/settings', data).then(d => ({ ...d.settings, status: d.status, folderId: d.folderId, folderUrl: d.folderUrl })),
+  get: () => api.get('/settings').then(d => ({ ...d.settings, status: d.status, projectUrl: d.projectUrl })),
+  update: (data) => api.put('/settings', data).then(d => ({ ...d.settings, status: d.status, projectUrl: d.projectUrl })),
 };
 
 export const initializeService = {

@@ -87,7 +87,7 @@ function InitialCopy() {
       </div>
       <div className="flex items-center justify-center gap-2 mt-5 text-white/70 text-xs">
         <ShieldCheck size={14} />
-        <span>Securely stored in the configured Google Drive.</span>
+        <span>Securely stored in the configured Supabase project.</span>
       </div>
     </div>
   );

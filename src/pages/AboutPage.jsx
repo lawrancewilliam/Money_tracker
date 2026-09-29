@@ -6,7 +6,7 @@ import MarketingFooter from '../components/marketing/MarketingFooter.jsx';
 
 const values = [
   { title: 'Simple', desc: 'Beautiful, no-nonsense tracking you actually want to open.' },
-  { title: 'Private', desc: 'Your data lives in your Google Drive storage, not a shared server.' },
+  { title: 'Private', desc: 'Your data lives in your Supabase database, not a shared server.' },
   { title: 'Honest', desc: 'Clear budgets and alerts that help you stay on track.' },
 ];
 
@@ -59,7 +59,7 @@ export default function AboutPage() {
                   a gentle nudge before you overspend.
                 </p>
                 <p>
-                  The entire app is single-user and stores its data in your own Google Drive storage through
+                  The entire app is single-user and stores its data in your own Supabase project through
                   secure server-side access — no traditional database required. That keeps things simple,
                   private and under your control.
                 </p>

@@ -1,10 +1,10 @@
-import { readSheet } from './lib/sheetsService.js';
-import { getGoogleAuth } from './lib/googleAuth.js';
+import { readSheet } from './lib/dbService.js';
+import { getSupabase } from './lib/supabaseClient.js';
 import { ok, mapError, internalError } from './lib/responses.js';
 
 export default async function handler(req, res) {
   try {
-    getGoogleAuth();
+    getSupabase();
 
     if (req.method !== 'GET') return mapError(res, 405, 'Method not allowed');
 

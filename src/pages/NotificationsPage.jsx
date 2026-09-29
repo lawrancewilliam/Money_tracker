@@ -88,10 +88,10 @@ export default function NotificationsPage() {
         subtitle="Stay on top of budgets, balances and recurring expenses."
         action={
           <div className="flex flex-wrap gap-2">
-            <button onClick={generate} className="inline-flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-medium border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-50">
+            <button onClick={generate} className="inline-flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-medium border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5">
               <RefreshCw size={15} /> Generate
             </button>
-            <button onClick={markAllRead} className="inline-flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-medium border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-50">
+            <button onClick={markAllRead} className="inline-flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-medium border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5">
               <CheckCheck size={15} /> Mark All Read
             </button>
             <button onClick={clearAll} className="inline-flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-medium border border-gray-200 dark:border-white/10 text-danger hover:bg-danger/5">

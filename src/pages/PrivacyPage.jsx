@@ -24,15 +24,15 @@ export default function PrivacyPage() {
         <section className="py-14">
           <div className="max-w-3xl mx-auto px-4 md:px-6 space-y-12">
             <PolicyBlock title="What We Store">
-              <p>Pocket Money stores your personal financial app data in the configured Google Drive storage. This includes your expenses, income, budgets, savings goals, recurring expenses, notifications and display settings. The data is stored in a single-user form — this app is designed for personal use, not shared accounts.</p>
+              <p>Pocket Money stores your personal financial app data in your Supabase PostgreSQL database. This includes your expenses, income, budgets, savings goals, recurring expenses, notifications and display settings. The data is stored in a single-user form — this app is designed for personal use, not shared accounts.</p>
             </PolicyBlock>
 
             <PolicyBlock title="How We Store It">
-              <p>All application data is persisted through the Vercel serverless functions using a Google service account. The service account accesses a fixed Google Drive folder via the Drive and Sheets APIs. No traditional database such as SQL or a NoSQL store is used.</p>
+              <p>All application data is persisted through the Vercel serverless functions in a Supabase PostgreSQL database. Row Level Security is enabled on every table and the database credentials stay server-side.</p>
             </PolicyBlock>
 
             <PolicyBlock title="No Account Required">
-              <p>There is no registration or sign-in. Because there is no user account, we do not maintain profile information, email addresses or passwords. The app is pre-configured with a fixed Drive folder for storage.</p>
+              <p>There is no registration or sign-in. Because there is no user account, we do not maintain profile information, email addresses or passwords. The app is pre-configured with a single Supabase project for storage.</p>
             </PolicyBlock>
 
             <PolicyBlock title="AI Insights">
@@ -44,7 +44,7 @@ export default function PrivacyPage() {
             </PolicyBlock>
 
             <PolicyBlock title="Keeping Your Data Safe">
-              <p>We use a secure Google service account for server-side access and never embed the service account credentials or secrets in the frontend. Your data is yours; you can export or back it up at any time from the Settings area of the app.</p>
+              <p>We keep all Supabase database credentials server-side and never embed them in the frontend. Your data is yours; you can export or back it up at any time from the Settings area of the app.</p>
             </PolicyBlock>
 
             <PolicyBlock title="Changes To This Policy">

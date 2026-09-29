@@ -161,7 +161,7 @@ function getMockResponse(url, method, body) {
 
 const DEMO_MODE = import.meta.env.VITE_DEMO_MODE === 'true';
 
-async function request(method, url, body) {
+async function fetchRaw(method, url, body) {
   const opts = {
     method,
     headers: { 'Content-Type': 'application/json' },
@@ -199,6 +199,44 @@ async function request(method, url, body) {
     errorMsg = errBody.error || errorMsg;
   } catch {}
   throw new Error(errorMsg);
+}
+
+// Repeat GETs are served from a short-lived cache and concurrent identical
+// requests share one network call, so revisiting a page does not refetch.
+// Every successful write clears the cache, so data stays accurate.
+const CACHE_TTL = 8000;
+const getCache = new Map();
+
+function cachedGet(url) {
+  const hit = getCache.get(url);
+  if (!hit) return null;
+  if (Date.now() - hit.at > CACHE_TTL) {
+    getCache.delete(url);
+    return null;
+  }
+  return hit.promise;
+}
+
+async function request(method, url, body) {
+  if (method === 'GET') {
+    const cached = cachedGet(url);
+    if (cached) {
+      const result = await cached;
+      setStorageStatus('Connected');
+      return result;
+    }
+    const promise = fetchRaw(method, url, body);
+    getCache.set(url, { at: Date.now(), promise });
+    try {
+      return await promise;
+    } catch (e) {
+      getCache.delete(url);
+      throw e;
+    }
+  }
+  const result = await fetchRaw(method, url, body);
+  getCache.clear();
+  return result;
 }
 
 const api = {

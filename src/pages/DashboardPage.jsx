@@ -141,13 +141,13 @@ export default function DashboardPage({ onInitialize, initState, storageStatus }
         </button>
         <button
           onClick={() => navigate('/app/income')}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-50"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/5 transition"
         >
           <ArrowDownCircle size={16} /> Add Income
         </button>
         <button
           onClick={() => setSavingsFormOpen(true)}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-50"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/5 transition"
         >
           <PiggyBank size={16} /> Add Savings
         </button>

@@ -16,7 +16,7 @@ const features = [
   { icon: Bell, title: 'Budget Alerts', desc: 'Know before you blow past a budget limit.', accent: 'warning' },
   { icon: Sparkles, title: 'AI Insights', desc: 'Friendly explanations of your spending patterns.', accent: 'magenta' },
   { icon: Repeat, title: 'Recurring Expenses', desc: 'Subscriptions and bills, handled automatically.', accent: 'violet' },
-  { icon: HardDrive, title: 'Automatic Backup', desc: 'Your data is backed up in Google Drive storage.', accent: 'success' },
+      { icon: HardDrive, title: 'Automatic Backup', desc: 'Your data is backed up in Supabase storage.', accent: 'success' },
   { icon: Download, title: 'Data Export', desc: 'Export everything as CSV or JSON anytime.', accent: 'purple' },
 ];
 

@@ -74,11 +74,11 @@ export default function CalendarPage() {
       <div className="flex items-center justify-between">
         <h1 className="text-xl lg:text-2xl font-bold text-navy dark:text-white">Expense Calendar</h1>
         <div className="flex items-center gap-2">
-          <button onClick={prevMonth} className="p-2 rounded-lg border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-50" aria-label="Previous month">
+          <button onClick={prevMonth} className="p-2 rounded-lg border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5" aria-label="Previous month">
             <ChevronLeft size={16} />
           </button>
           <span className="text-sm font-medium text-navy dark:text-white min-w-[120px] text-center">{monthName}</span>
-          <button onClick={nextMonth} className="p-2 rounded-lg border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-50" aria-label="Next month">
+          <button onClick={nextMonth} className="p-2 rounded-lg border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5" aria-label="Next month">
             <ChevronRight size={16} />
           </button>
         </div>

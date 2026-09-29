@@ -1,11 +1,10 @@
-import { readSheet } from './lib/sheetsService.js';
-import { getGoogleAuth } from './lib/googleAuth.js';
-import { uploadBackupFile } from './lib/driveService.js';
+import { readSheet, saveBackup } from './lib/dbService.js';
+import { getSupabase, getProjectUrl } from './lib/supabaseClient.js';
 import { ok, mapError, internalError } from './lib/responses.js';
 
 export default async function handler(req, res) {
   try {
-    getGoogleAuth();
+    getSupabase();
 
     if (req.method !== 'POST') return mapError(res, 405, 'Method not allowed');
 
@@ -29,9 +28,9 @@ export default async function handler(req, res) {
     const timestamp = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}-${pad(now.getHours())}-${pad(now.getMinutes())}`;
     const fileName = `PocketMoneyBackup-${timestamp}.json`;
 
-    const uploaded = await uploadBackupFile(fileName, data);
+    const uploaded = await saveBackup(fileName, data);
 
-    return ok(res, { success: true, file: uploaded });
+    return ok(res, { success: true, file: uploaded, provider: 'Supabase', projectUrl: getProjectUrl() });
   } catch (e) {
     return internalError(res, e);
   }

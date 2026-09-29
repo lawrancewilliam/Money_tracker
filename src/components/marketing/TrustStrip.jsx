@@ -3,7 +3,7 @@ import FadeContent from '../reactbits/FadeContent.jsx';
 
 const items = [
   { icon: Database, label: 'No traditional database' },
-  { icon: Cloud, label: 'Google Drive powered storage' },
+  { icon: Cloud, label: 'Supabase powered storage' },
   { icon: RefreshCw, label: 'Automatic sync' },
   { icon: HardDrive, label: 'Backup support' },
   { icon: Download, label: 'Export anytime' },

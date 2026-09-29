@@ -1,5 +1,5 @@
-import { clearSheetRows } from './lib/sheetsService.js';
-import { getGoogleAuth } from './lib/googleAuth.js';
+import { clearSheetRows } from './lib/dbService.js';
+import { getSupabase } from './lib/supabaseClient.js';
 import { ok, badRequest, mapError, internalError } from './lib/responses.js';
 
 const RESETABLE_SHEETS = {
@@ -15,7 +15,7 @@ const RESETABLE_SHEETS = {
 
 export default async function handler(req, res) {
   try {
-    getGoogleAuth();
+    getSupabase();
 
     if (req.method !== 'POST') return mapError(res, 405, 'Method not allowed');
 

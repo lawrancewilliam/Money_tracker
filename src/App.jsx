@@ -42,7 +42,7 @@ export default function App() {
     setInitMessages([]);
     const steps = [
       ['Connecting to storage...', 'Connecting...'],
-      ['Checking spreadsheet...', 'Locating spreadsheet...'],
+      ['Checking database...', 'Locating tables...'],
       ['Preparing data...', 'Loading data...'],
       ['Calculating balance...', 'Calculating balance...'],
     ];

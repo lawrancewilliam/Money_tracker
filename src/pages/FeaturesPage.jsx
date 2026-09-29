@@ -22,7 +22,7 @@ export default function FeaturesPage() {
                 delay={30}
               />
               <p className="text-gray-500 dark:text-gray-400 mt-4 leading-relaxed">
-                Everything fitted into one single-user budget tracker stored safely in your Google Drive storage.
+                Everything fitted into one single-user budget tracker stored safely in your Supabase database.
               </p>
             </div>
           </div>
@@ -85,7 +85,7 @@ const FEATURES = [
   {
     category: 'Storage & Data',
     items: [
-      { icon: HardDrive, title: 'Google Drive Storage', desc: 'Application data stored in a fixed Google Drive folder via server-side sync.' },
+      { icon: HardDrive, title: 'Supabase Storage', desc: 'Application data stored in a Supabase PostgreSQL database via server-side API.' },
       { icon: RefreshCw, title: 'Automatic Sync', desc: 'Changes sync automatically. Your data stays current across the app.' },
       { icon: Download, title: 'Export & Backup', desc: 'Export to CSV or JSON and download backup copies whenever you need.' },
     ],

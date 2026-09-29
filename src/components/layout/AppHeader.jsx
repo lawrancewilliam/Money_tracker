@@ -29,7 +29,7 @@ export default function AppHeader({ onMenuClick, onQuickAdd, storageStatus = 'Sy
 
       <div className="hidden md:flex items-center gap-2 text-xs text-gray-400">
         <Cloud size={14} className={storageStatus === 'Connected' ? 'text-success' : 'text-warning'} />
-        <span>{storageStatus === 'Connected' ? 'Google Drive synced' : `Storage: ${storageStatus}`}</span>
+        <span>{storageStatus === 'Connected' ? 'Supabase synced' : `Storage: ${storageStatus}`}</span>
       </div>
 
       <div className="ml-auto flex items-center gap-2">

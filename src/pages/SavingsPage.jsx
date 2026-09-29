@@ -281,7 +281,7 @@ const [modalMode, setModalMode] = useState(null); // 'create' | 'edit' | 'deposi
           <div className="flex items-center gap-3">
             <SyncStatus status={syncStatus} />
             <div className="ml-auto flex gap-2">
-              <button type="button" onClick={() => setModalMode(null)} className="px-4 py-2 rounded-xl text-sm font-medium border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-50 transition">Cancel</button>
+              <button type="button" onClick={() => setModalMode(null)} className="px-4 py-2 rounded-xl text-sm font-medium border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 transition">Cancel</button>
               <button type="submit" form="goal-form" disabled={syncStatus === 'saving'} className="px-5 py-2 rounded-xl text-sm font-semibold gradient-bg text-white disabled:opacity-60">
                 {syncStatus === 'saving' ? 'Saving...' : 'Save Goal'}
               </button>
@@ -306,7 +306,7 @@ const [modalMode, setModalMode] = useState(null); // 'create' | 'edit' | 'deposi
             <label className={labelCls}>Icon</label>
             <div className="flex flex-wrap gap-2">
               {ICONS.map((ic) => (
-                <button key={ic} type="button" onClick={() => setForm({ ...form, Icon: ic })} className={`w-10 h-10 rounded-xl text-xl flex items-center justify-center transition border ${form.Icon === ic ? 'border-purple bg-purple/10' : 'border-gray-200 dark:border-white/10 hover:bg-gray-50'}`}>
+                <button key={ic} type="button" onClick={() => setForm({ ...form, Icon: ic })} className={`w-10 h-10 rounded-xl text-xl flex items-center justify-center transition border ${form.Icon === ic ? 'border-purple bg-purple/10' : 'border-gray-200 dark:border-white/10 hover:bg-gray-50 dark:hover:bg-white/5'}`}>
                   {ic}
                 </button>
               ))}
@@ -328,7 +328,7 @@ const [modalMode, setModalMode] = useState(null); // 'create' | 'edit' | 'deposi
           <div className="flex items-center gap-3">
             <SyncStatus status={syncStatus} />
             <div className="ml-auto flex gap-2">
-              <button type="button" onClick={() => setModalMode(null)} className="px-4 py-2 rounded-xl text-sm font-medium border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-50 transition">Cancel</button>
+              <button type="button" onClick={() => setModalMode(null)} className="px-4 py-2 rounded-xl text-sm font-medium border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 transition">Cancel</button>
               <button type="submit" form="tx-form" disabled={syncStatus === 'saving'} className="px-5 py-2 rounded-xl text-sm font-semibold gradient-bg text-white disabled:opacity-60">
                 {syncStatus === 'saving' ? 'Saving...' : modalMode === 'deposit' ? 'Add Money' : 'Withdraw'}
               </button>

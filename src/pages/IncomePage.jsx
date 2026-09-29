@@ -66,7 +66,7 @@ export default function IncomePage() {
           <div className="flex gap-2">
             <button
               onClick={() => openForm('pocketMoney')}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-50"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5"
             >
               <Wallet size={16} /> Set Pocket Money
             </button>

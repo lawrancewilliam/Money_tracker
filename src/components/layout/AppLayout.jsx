@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import AppSidebar from './AppSidebar.jsx';
 import AppHeader from './AppHeader.jsx';
@@ -24,12 +24,22 @@ export default function AppLayout({ children, onQuickAdd, storageStatus, syncEve
         />
         <main className="flex-1 px-4 lg:px-6 py-6 lg:py-8 pb-24 lg:pb-8">
           <div className="max-w-5xl mx-auto">
-            {children || <Outlet />}
+            <Suspense fallback={<PageFallback />}>
+              {children || <Outlet />}
+            </Suspense>
           </div>
         </main>
       </div>
       <MobileBottomNav onQuickAdd={onQuickAdd || openQuickAdd} />
       {quickAddOpen && <ExpenseForm open onClose={() => setQuickAddOpen(false)} />}
+    </div>
+  );
+}
+
+function PageFallback() {
+  return (
+    <div className="py-12 flex justify-center">
+      <div className="w-7 h-7 rounded-full border-2 border-purple/30 border-t-purple animate-spin" />
     </div>
   );
 }

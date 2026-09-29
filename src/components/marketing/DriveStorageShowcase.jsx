@@ -4,7 +4,7 @@ import AnimatedContent from '../reactbits/AnimatedContent.jsx';
 import SpotlightCard from '../reactbits/SpotlightCard.jsx';
 
 const storageItems = [
-  { icon: Cloud, label: 'Google Drive Storage', status: '✓ Connected', color: 'text-success' },
+  { icon: Cloud, label: 'Supabase Storage', status: '✓ Connected', color: 'text-success' },
   { icon: Database, label: 'Pocket Money Data', status: '✓ Synced', color: 'text-success' },
   { icon: FileText, label: 'Expenses', status: '✓ Saved', color: 'text-success' },
   { icon: Wallet, label: 'Budgets', status: '✓ Saved', color: 'text-success' },
@@ -25,8 +25,7 @@ export default function DriveStorageShowcase() {
             delay={30}
           />
           <p className="text-gray-500 dark:text-gray-400 mt-4 max-w-xl leading-relaxed">
-            Pocket Money stores its application data inside the configured Google Drive storage —
-            secure server-side access, no traditional database involved.
+            Pocket Money stores its application data inside your Supabase PostgreSQL project - secure server-side access with row level security enabled.
           </p>
         </div>
 
@@ -37,7 +36,7 @@ export default function DriveStorageShowcase() {
           >
             <div className="flex items-center gap-3 mb-5">
               <Cloud className="text-violet" size={20} />
-              <h3 className="font-semibold text-navy dark:text-white">Drive Sync Status</h3>
+              <h3 className="font-semibold text-navy dark:text-white">Storage Sync Status</h3>
               <span className="ml-auto text-xs font-medium text-success bg-success/10 px-2.5 py-1 rounded-full">Live</span>
             </div>
             <div className="space-y-2">

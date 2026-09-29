@@ -148,7 +148,7 @@ export default function BudgetsPage() {
           <div className="flex items-center gap-3">
             <SyncStatus status={syncStatus} />
             <div className="ml-auto flex gap-2">
-              <button type="button" onClick={() => setModalOpen(false)} className="px-4 py-2 rounded-xl text-sm font-medium border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-50 transition">Cancel</button>
+              <button type="button" onClick={() => setModalOpen(false)} className="px-4 py-2 rounded-xl text-sm font-medium border border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 transition">Cancel</button>
               <button type="submit" form="budget-form" disabled={syncStatus === 'saving'} className="px-5 py-2 rounded-xl text-sm font-semibold gradient-bg text-white disabled:opacity-60">
                 {syncStatus === 'saving' ? 'Saving...' : 'Save Budget'}
               </button>

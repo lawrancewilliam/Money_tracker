@@ -1,5 +1,5 @@
-import { readSheet, appendRow, updateRowById, deleteRowById } from './lib/sheetsService.js';
-import { getGoogleAuth } from './lib/googleAuth.js';
+import { readSheet, appendRow, updateRowById, deleteRowById } from './lib/dbService.js';
+import { getSupabase } from './lib/supabaseClient.js';
 import { validateExpense, sanitizeString, isValidDate } from './lib/validation.js';
 import { ok, created, badRequest, notFound, mapError, internalError } from './lib/responses.js';
 
@@ -8,7 +8,7 @@ const now = () => new Date().toISOString();
 
 export default async function handler(req, res) {
   try {
-    getGoogleAuth();
+    getSupabase();
 
     if (req.method === 'GET') {
       const expenses = await readSheet('Expenses');

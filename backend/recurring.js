@@ -1,5 +1,5 @@
-import { readSheet, appendRow, updateRowById, deleteRowById } from './lib/sheetsService.js';
-import { getGoogleAuth } from './lib/googleAuth.js';
+import { readSheet, appendRow, updateRowById, deleteRowById } from './lib/dbService.js';
+import { getSupabase } from './lib/supabaseClient.js';
 import { validateRecurring, sanitizeString } from './lib/validation.js';
 import { ok, created, badRequest, notFound, mapError, internalError } from './lib/responses.js';
 
@@ -24,7 +24,7 @@ function addInterval(dateStr, frequency) {
 
 export default async function handler(req, res) {
   try {
-    getGoogleAuth();
+    getSupabase();
 
     if (req.method === 'GET') {
       const recurring = await readSheet('RecurringExpenses');

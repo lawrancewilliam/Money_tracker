@@ -29,7 +29,7 @@ export function SyncStatus({ status }) {
     );
   }
   if (status === 'saved') {
-    return <span className="inline-flex items-center gap-1.5 text-xs text-success">✓ Saved to Drive</span>;
+    return <span className="inline-flex items-center gap-1.5 text-xs text-success">✓ Saved</span>;
   }
   if (status === 'error') {
     return <span className="inline-flex items-center gap-1.5 text-xs text-danger">⚠ Could not sync</span>;

@@ -2,9 +2,7 @@ import PDFDocument from 'pdfkit';
 import fs from 'fs';
 import path from 'path';
 import * as fontkit from 'fontkit';
-import { google } from 'googleapis';
-import { getGoogleAuth } from './googleAuth.js';
-import { getSpreadsheetId } from './driveService.js';
+import { readSheet } from './dbService.js';
 import { calculateSavingsNet } from './financialCalculations.js';
 
 const PAGE_WIDTH = 595.28;
@@ -90,34 +88,19 @@ function isInRange(dateStr, range, month, year) {
 }
 
 async function readAll(ranges) {
-  const auth = getGoogleAuth();
-  const sheets = google.sheets({ version: 'v4', auth });
-  const spreadsheetId = await getSpreadsheetId();
   const now = new Date();
   const month = now.getMonth() + 1;
   const year = now.getFullYear();
 
-  const readRaw = async (name) => {
-    const res = await sheets.spreadsheets.values.get({ spreadsheetId, range: `${name}!A:Z` });
-    const vals = res.data.values || [];
-    if (vals.length === 0) return [];
-    const headers = vals[0];
-    return vals.slice(1).map((row) => {
-      const obj = {};
-      headers.forEach((h, i) => { obj[h] = row[i] || ''; });
-      return obj;
-    });
-  };
-
   const [pocketMoney, income, expenses, budgets, goals, savingsTx, recurring, settings] = await Promise.all([
-    readRaw('PocketMoney'),
-    readRaw('Income'),
-    readRaw('Expenses'),
-    readRaw('Budgets'),
-    readRaw('SavingsGoals'),
-    readRaw('SavingsTransactions'),
-    readRaw('RecurringExpenses'),
-    readRaw('UserSettings'),
+    readSheet('PocketMoney'),
+    readSheet('Income'),
+    readSheet('Expenses'),
+    readSheet('Budgets'),
+    readSheet('SavingsGoals'),
+    readSheet('SavingsTransactions'),
+    readSheet('RecurringExpenses'),
+    readSheet('UserSettings'),
   ]);
 
   const totalSavings = calculateSavingsNet(savingsTx);
