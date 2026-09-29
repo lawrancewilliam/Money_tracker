@@ -68,9 +68,6 @@ app.post('/api/backup', wrap(backupHandler));
 app.get('/api/export', wrap(exportHandler));
 app.post('/api/reset', wrap(resetHandler));
 
-app.use((req, res) => res.status(404).json({ error: `Not found: ${req.url}` }));
+app.use('/api', (req, res) => res.status(404).json({ error: `Not found: ${req.url}` }));
 
-const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => {
-  console.log(`Pocket Money API server running on http://localhost:${PORT}`);
-});
+export default app;

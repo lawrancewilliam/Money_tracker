@@ -4,9 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently -k -n api,vite \"node api/server.js\" \"vite\"",
-    "dev:server": "node api/server.js",
-    "dev:all": "concurrently -k \"node api/server.js\" \"vite\"",
+    "dev": "concurrently -k -n api,vite \"node backend/server.js\" \"vite\"",
+    "dev:server": "node backend/server.js",
+    "dev:all": "concurrently -k \"node backend/server.js\" \"vite\"",
     "build": "vite build",
     "lint": "oxlint",
     "preview": "vite preview",
