@@ -1,14 +1,13 @@
 import { useState, useEffect, useCallback } from 'react';
 import {
   Wallet, ArrowDownCircle, PiggyBank, Receipt, TrendingUp, Target,
-  CalendarClock, Sparkles, Plus, PieChart, Trash2,
+  CalendarClock, Sparkles, Plus, PieChart,
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import StatCard from '../components/app/StatCard.jsx';
 import ExpenseForm from '../components/app/ExpenseForm.jsx';
 import IncomeForm from '../components/app/IncomeForm.jsx';
 import SavingsTransactionForm from '../components/app/SavingsTransactionForm.jsx';
-import ResetModal from '../components/app/ResetModal.jsx';
 import ProgressBar from '../components/reactbits/ProgressBar.jsx';
 import { EmptyState } from '../components/app/EmptyState.jsx';
 import ErrorState from '../components/app/ErrorState.jsx';
@@ -26,8 +25,6 @@ export default function DashboardPage({ onInitialize, initState, storageStatus }
   const [expenseFormOpen, setExpenseFormOpen] = useState(false);
   const [savingsFormOpen, setSavingsFormOpen] = useState(false);
   const [showPocketMoneySetup, setShowPocketMoneySetup] = useState(false);
-  const [resetOpen, setResetOpen] = useState(false);
-  const [resetting, setResetting] = useState(false);
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -45,21 +42,6 @@ export default function DashboardPage({ onInitialize, initState, storageStatus }
   useEffect(() => {
     load();
   }, [load]);
-
-  const handleReset = async (sheets) => {
-    if (resetting) return;
-    setResetting(true);
-    try {
-      await api.post('/reset', { sheets });
-      setResetOpen(false);
-      toast.success('Data reset successfully');
-      await load();
-    } catch (e) {
-      toast.error(`Could not reset data: ${e.message}`);
-    } finally {
-      setResetting(false);
-    }
-  };
 
   if (error) {
     return <ErrorState title="Could not load dashboard" message={error} onRetry={load} />;
@@ -87,13 +69,6 @@ export default function DashboardPage({ onInitialize, initState, storageStatus }
           <p className="text-sm text-gray-400 mt-0.5">Here's how your pocket money looks this month.</p>
         </div>
         <div className="flex flex-wrap items-center gap-3">
-          <button
-            onClick={() => setResetOpen(true)}
-            className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold border border-gray-200 dark:border-white/10 text-danger hover:bg-danger/10 transition"
-          >
-            <Trash2 size={16} />
-            Reset Data
-          </button>
           <button
             onClick={() => setShowPocketMoneySetup(true)}
             className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold gradient-bg text-white shadow-lg shadow-purple/25 hover:opacity-95 transition"
@@ -187,13 +162,6 @@ export default function DashboardPage({ onInitialize, initState, storageStatus }
           onClose={() => setShowPocketMoneySetup(false)}
           onSaved={load}
           defaultPocketMoney={s.pocketMoney}
-        />
-      )}
-      {resetOpen && (
-        <ResetModal
-          onClose={() => setResetOpen(false)}
-          onConfirm={handleReset}
-          resetting={resetting}
         />
       )}
       {savingsFormOpen && (

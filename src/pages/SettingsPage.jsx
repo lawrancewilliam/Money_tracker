@@ -5,7 +5,7 @@ import { useTheme } from '../hooks/useTheme.jsx';
 import { useToast } from '../components/app/Toast.jsx';
 import PageHeader from '../components/app/PageHeader.jsx';
 import { SyncStatus } from '../components/app/SyncStatus.jsx';
-import { ConfirmDialog } from '../components/app/Modal.jsx';
+import ResetModal from '../components/app/ResetModal.jsx';
 import api from '../services/api.js';
 
 const SAVE_DEBOUNCE_MS = 600;
@@ -18,6 +18,7 @@ export default function SettingsPage() {
   const [syncStatus, setSyncStatus] = useState('idle');
   const [lastSync, setLastSync] = useState(null);
   const [confirmReset, setConfirmReset] = useState(false);
+  const [resetting, setResetting] = useState(false);
   const [pdfRange, setPdfRange] = useState('month');
   const [exportingPdf, setExportingPdf] = useState(false);
 
@@ -182,10 +183,20 @@ export default function SettingsPage() {
     }
   };
 
-  const resetAll = async () => {
-    setConfirmReset(false);
-    lastToastRef.current = 0;
-    showToast(toast.info, 'To reset all data, truncate the tables in your Supabase project. Default categories are recreated on next launch.');
+  const resetAll = async (sheets) => {
+    if (resetting) return;
+    setResetting(true);
+    try {
+      await api.post('/reset', { sheets });
+      setConfirmReset(false);
+      lastToastRef.current = 0;
+      showToast(toast.success, 'Data reset successfully');
+      await load();
+    } catch (e) {
+      showToast(toast.error, `Could not reset data: ${e.message}`);
+    } finally {
+      setResetting(false);
+    }
   };
 
   const inputCls = "w-full px-3 py-2.5 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-navy text-navy dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-purple/40";
@@ -339,21 +350,19 @@ export default function SettingsPage() {
 
       <div className={cardCls}>
         <h3 className={`${sectionTitle} text-danger`}>Reset</h3>
-        <p className="text-sm text-gray-400 mt-1">Remove all local settings. To fully erase tracker data, truncate the tables in your Supabase project.</p>
+        <p className="text-sm text-gray-400 mt-1">Permanently delete your tracker data. Choose which sheets to reset — this cannot be undone.</p>
         <button onClick={() => setConfirmReset(true)} className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium text-danger border border-danger/30 hover:bg-danger/5 transition">
-          <Trash2 size={15} /> Reset App Data
+          <Trash2 size={15} /> Reset Data
         </button>
       </div>
 
-      <ConfirmDialog
-        open={confirmReset}
-        onClose={() => setConfirmReset(false)}
-        onConfirm={resetAll}
-        title="Reset App Data?"
-        message="This clears local settings. Tracker data in Supabase will remain unless you truncate the tables."
-        confirmLabel="Reset"
-        danger={false}
-      />
+      {confirmReset && (
+        <ResetModal
+          onClose={() => setConfirmReset(false)}
+          onConfirm={resetAll}
+          resetting={resetting}
+        />
+      )}
     </div>
   );
 }
